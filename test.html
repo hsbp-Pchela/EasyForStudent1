@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <button onclick="testApi()">Тестировать API</button>
+  <div id="result"></div>
+
+  <script>
+    async function testApi() {
+      const response = await fetch('http://localhost:3000/api/process-audio', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          audioUrl: 'https://storage.yandexcloud.net/chotoxranim1/audio-c245fd38-ca2a-4818-ac86-bedb9d164d1f.mp3',
+          fileName: 'test.mp3'
+        })
+      });
+      
+      const result = await response.json();
+      document.getElementById('result').innerHTML = JSON.stringify(result, null, 2);
+    }
+  </script>
+</body>
+</html>
